@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Polityka prywatności – 360Visio</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #070b14;
+        --panel: #0f1524;
+        --text: #edf3ff;
+        --muted: #9fb0ce;
+        --accent: #3f8cff;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.7;
+      }
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgb(7 11 20 / 90%);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid rgb(255 255 255 / 8%);
+        padding: 0.9rem 0;
+      }
+      .container {
+        width: min(780px, 92vw);
+        margin: 0 auto;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-weight: 700;
+        text-decoration: none;
+        color: var(--text);
+      }
+      .brand-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #3f8cff, #1ad9b1);
+      }
+      main {
+        padding: 3rem 0 5rem;
+      }
+      h1 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 0.4rem; }
+      h2 { font-size: 1.15rem; margin: 2rem 0 0.5rem; color: var(--text); }
+      p, li { color: var(--muted); margin: 0 0 0.75rem; }
+      ul { padding-left: 1.4rem; }
+      a { color: var(--accent); }
+      .updated { font-size: 0.85rem; color: var(--muted); margin-bottom: 2.5rem; }
+      footer {
+        border-top: 1px solid rgb(255 255 255 / 10%);
+        padding: 1rem 0;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="container">
+        <a class="brand" href="/">
+          <span class="brand-dot"></span>
+          <span>360Visio</span>
+        </a>
+      </div>
+    </div>
+
+    <main>
+      <div class="container">
+        <h1>Polityka prywatności</h1>
+        <p class="updated">Ostatnia aktualizacja: kwiecień 2026</p>
+
+        <h2>1. Administrator danych</h2>
+        <p>Administratorem Twoich danych osobowych jest <strong>[NAZWA FIRMY]</strong>, <strong>[ADRES]</strong>, e-mail: <strong>[EMAIL KONTAKTOWY]</strong>.</p>
+
+        <h2>2. Jakie dane zbieramy</h2>
+        <p>Za pośrednictwem formularza kontaktowego zbieramy:</p>
+        <ul>
+          <li>imię i nazwisko,</li>
+          <li>adres e-mail,</li>
+          <li>numer telefonu (opcjonalnie),</li>
+          <li>nazwę firmy (opcjonalnie),</li>
+          <li>treść wiadomości.</li>
+        </ul>
+
+        <h2>3. Cel i podstawa przetwarzania</h2>
+        <p>Dane przetwarzamy w celu odpowiedzi na Twoje zapytanie oraz nawiązania kontaktu w sprawach dotyczących produktu 360Visio. Podstawą przetwarzania jest Twoja zgoda (art. 6 ust. 1 lit. a RODO).</p>
+
+        <h2>4. Okres przechowywania</h2>
+        <p>Dane przechowujemy do czasu wycofania zgody lub przez okres niezbędny do realizacji celu, nie dłużej niż 3 lata.</p>
+
+        <h2>5. Twoje prawa</h2>
+        <p>Przysługuje Ci prawo do: dostępu do danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, przeniesienia danych oraz wycofania zgody w dowolnym momencie. W tym celu napisz na: <strong>[EMAIL KONTAKTOWY]</strong>.</p>
+
+        <h2>6. Przekazywanie danych</h2>
+        <p>Dane są przechowywane w usłudze Google Firebase (Firestore), której politykę prywatności znajdziesz na stronie Google. Nie sprzedajemy ani nie udostępniamy Twoich danych podmiotom trzecim w celach marketingowych.</p>
+
+        <h2>7. Kontakt</h2>
+        <p>W sprawach dotyczących danych osobowych skontaktuj się z nami: <strong>[EMAIL KONTAKTOWY]</strong>.</p>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        &copy; 2026 360Visio &nbsp;·&nbsp; <a href="/">Strona główna</a>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -8,37 +8,28 @@ import {
 import { getAnalytics } from "firebase/analytics";
 import { firebaseConfig } from "./firebase-config.js";
 
-const distanceRange = document.getElementById("distanceRange");
-const distanceValue = document.getElementById("distanceValue");
-const statusEl = document.getElementById("status");
-const car = document.getElementById("car");
+const angleRange = document.getElementById("angleRange");
+const beamTarget = document.getElementById("beamTarget");
+const carSource = document.getElementById("carSource");
 const leadForm = document.getElementById("leadForm");
 const leadStatus = document.getElementById("leadStatus");
 const leadSubmit = document.getElementById("leadSubmit");
 
-function setStatus(distance) {
-  distanceValue.textContent = distance;
-
-  let level = "safe";
-  let label = "Status: bezpieczny dystans";
-
-  if (distance <= 20 && distance > 10) {
-    level = "warn";
-    label = "Status: pojazd zbliża się";
-  } else if (distance <= 10) {
-    level = "danger";
-    label = "Status: wysoki priorytet ostrzeżenia";
+function setAngle(val) {
+  // val is 0 to 100.
+  // Map it to angles, e.g. -20deg to +20deg
+  const degrees = (val - 50) * 0.4;
+  
+  if (beamTarget) {
+    beamTarget.style.transform = `rotate(${degrees}deg)`;
+    // the beam width logic is in CSS pulse-beam, but we can also set the length dynamic if needed
   }
-
-  statusEl.className = `status ${level}`;
-  statusEl.textContent = label;
-
-  const scale = 0.5 + (40 - distance) * 0.03;
-  const glow = 8 + (40 - distance) * 0.9;
-  const bottomPx = 18 + (40 - distance) * 1.2;
-  car.style.transform = `translateX(-50%) scale(${scale.toFixed(2)})`;
-  car.style.boxShadow = `0 0 ${glow.toFixed(0)}px rgba(255,255,255,0.65)`;
-  car.style.bottom = `${bottomPx.toFixed(0)}px`;
+  
+  if (carSource) {
+    // move the car source up and down based on angle
+    const translateY = -50 + degrees * 2;
+    carSource.style.transform = `translateY(${translateY}%)`;
+  }
 }
 
 function hasFirebaseConfig(config) {
@@ -68,50 +59,54 @@ const observer = new IntersectionObserver(
   { threshold: 0.1 }
 );
 
-document.querySelectorAll(".feature-card, .tier-card, .support-card").forEach((el) => {
-  el.classList.add("fade-in");
+document.querySelectorAll(".fade-in").forEach((el) => {
   observer.observe(el);
 });
 
-setStatus(Number(distanceRange.value));
+// Setup Optics Demo
+if (angleRange) {
+  setAngle(Number(angleRange.value));
+  angleRange.addEventListener("input", (event) => {
+    setAngle(Number(event.target.value));
+  });
+}
 
-distanceRange.addEventListener("input", (event) => {
-  setStatus(Number(event.target.value));
-});
-
+// Setup Firebase
 if (!hasFirebaseConfig(firebaseConfig)) {
-  setLeadStatus("Uzupełnij firebase-config.js, aby aktywować zapis zgłoszeń.", "error");
+  if(leadStatus) setLeadStatus("Uzupełnij firebase-config.js, aby aktywować zapis wg Firebase.", "error");
 } else {
   const app = initializeApp(firebaseConfig);
   getAnalytics(app);
   const db = getFirestore(app);
 
-  leadForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    leadSubmit.disabled = true;
-    setLeadStatus("Wysyłanie zgłoszenia...", "");
+  if (leadForm) {
+    leadForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      leadSubmit.disabled = true;
+      setLeadStatus("Wysyłanie...", "");
 
-    const formData = new FormData(leadForm);
-    const payload = {
-      fullName: String(formData.get("fullName") || "").trim(),
-      email: String(formData.get("email") || "").trim(),
-      company: String(formData.get("company") || "").trim(),
-      phone: String(formData.get("phone") || "").trim(),
-      message: String(formData.get("message") || "").trim(),
-      gdprConsent: true,
-      source: "trade-show-landing",
-      createdAt: serverTimestamp(),
-    };
+      const formData = new FormData(leadForm);
+      const payload = {
+        fullName: String(formData.get("fullName") || "").trim(),
+        email: String(formData.get("email") || "").trim(),
+        company: String(formData.get("company") || "").trim(),
+        phone: String(formData.get("phone") || "").trim(),
+        message: String(formData.get("message") || "").trim(),
+        gdprConsent: true,
+        source: "trade-show-landing-optical",
+        createdAt: serverTimestamp(),
+      };
 
-    try {
-      await addDoc(collection(db, "leads"), payload);
-      setLeadStatus("Dziękujemy! Odezwiemy się wkrótce.", "success");
-      leadForm.reset();
-    } catch (error) {
-      console.error("Błąd zapisu do Firestore:", error);
-      setLeadStatus("Nie udało się wysłać zgłoszenia. Spróbuj ponownie.", "error");
-    } finally {
-      leadSubmit.disabled = false;
-    }
-  });
+      try {
+        await addDoc(collection(db, "leads"), payload);
+        setLeadStatus("Dziękujemy za kontakt. Odezwiemy się wkrótce.", "success");
+        leadForm.reset();
+      } catch (error) {
+        console.error("Błąd zapisu do Firestore:", error);
+        setLeadStatus("Wystąpił błąd podczas wysyłania. Spróbuj powtórnie.", "error");
+      } finally {
+        leadSubmit.disabled = false;
+      }
+    });
+  }
 }

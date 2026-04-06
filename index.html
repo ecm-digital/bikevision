@@ -2,239 +2,116 @@
 <html lang="pl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>360Visio - Twój kask widzi to, czego Ty nie widzisz</title>
-    <meta name="description" content="360Visio to nakładka do kasku rowerowego z kamerą tylną i wyświetlaczem HUD. Widok za Tobą - wprost przed Twoim okiem. Bez odwracania głowy." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>360 VISION</title>
+    <meta name="description" content="Breakthrough rear-vision system. Ride Safe! New invention!" />
 
     <!-- Open Graph -->
-    <meta property="og:title" content="360Visio - Twój kask widzi to, czego Ty nie widzisz" />
-    <meta property="og:description" content="Nakładka do kasku z kamerą tylną i wyświetlaczem HUD. Premiera targowa 2026." />
+    <meta property="og:title" content="360 VISION - Breakthrough rear-vision system" />
+    <meta property="og:description" content="Ride Safe! New invention! 360 VISION." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://bikevision-96319.web.app" />
-    <meta property="og:locale" content="pl_PL" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="360Visio - Twój kask widzi to, czego Ty nie widzisz" />
-    <meta name="twitter:description" content="Nakładka do kasku z kamerą tylną i wyświetlaczem HUD. Premiera targowa 2026." />
+    <meta property="og:locale" content="en_US" />
 
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body>
+  <body class="dark-theme">
     <header class="topbar">
       <div class="container topbar-inner">
         <div class="brand">
-          <span class="brand-dot"></span>
-          <span>360Visio</span>
+          <a href="#home" style="text-decoration: none; color: inherit;">360 VISION</a>
         </div>
         <nav class="topbar-nav">
-          <a href="#funkcje">Funkcje</a>
-          <a href="#demo">Demo</a>
-          <a href="#preorder">Pre-order</a>
-          <a href="#wsparcie">Wsparcie</a>
+          <a href="#home">Home</a>
+          <a href="#product">The Product</a>
+          <a href="#inventors">The Inventors</a>
+          <a href="#preorder">Preorder</a>
+          <a href="#invest">Invest</a>
         </nav>
-        <a class="btn btn-outline" href="#kontakt">Kontakt</a>
+        <a class="btn btn-default btn-sm" href="#preorder">Preorder</a>
       </div>
     </header>
 
     <main>
-      <section class="hero">
-        <div class="container hero-grid">
-          <div class="hero-copy">
-            <p class="kicker">Premiera targowa 2026</p>
-            <h1>Twój kask widzi to, czego <span>Ty nie widzisz</span>.</h1>
-            <p class="lead">
-              360Visio to nakładka do kasku rowerowego z kamerą tylną i wyświetlaczem HUD.
-              Obraz z drogi za Tobą pojawia się wprost przed Twoim okiem - bez odwracania głowy.
-            </p>
-            <div class="hero-cta">
-              <a class="btn btn-primary" href="#demo">Zobacz symulację</a>
-              <a class="btn btn-ghost" href="#funkcje">Poznaj funkcje</a>
+      <!-- 1) Home -->
+      <section id="home" class="hero section-spacing">
+        <div class="container hero-container">
+          <!-- GIF placeholder -->
+          <div class="gif-placeholder fade-in">
+             <div class="gif-placeholder-inner">
+                 <span class="gif-icon">🔄</span>
+                 <span>(miejsce na animowany GIF - obracające się okulary)</span>
+             </div>
+          </div>
+          
+          <h1 class="hero-title fade-in">360 VISION</h1>
+          <p class="hero-subtitle fade-in">
+            NEW rear vision system
+          </p>
+        </div>
+      </section>
+
+      <!-- 2) The Product -->
+      <section id="product" class="product-section section-spacing">
+        <div class="container text-center">
+          <h2 class="section-title fade-in">Breakthrough rear-vision system</h2>
+          <h3 class="product-catchphrase fade-in">Ride Safe!</h3>
+          <p class="product-desc fade-in">
+            New invention!
+          </p>
+        </div>
+      </section>
+
+      <!-- 3) The Inventors -->
+      <section id="inventors" class="inventors-section section-spacing">
+        <div class="container text-center">
+          <h2 class="section-title fade-in">The Inventors</h2>
+          <div class="inventors-grid fade-in">
+            <div class="inventor-card">
+              <div class="inventor-avatar"></div>
+              <h3>...</h3>
             </div>
           </div>
-          <div class="hero-visual">
-            <div class="product-card">
-              <div class="device-vis">
-                <div class="helmet-shape"></div>
-                <div class="device-body">
-                  <div class="eye-pod eye-left"></div>
-                  <div class="device-bar"></div>
-                  <div class="eye-pod eye-right"></div>
+        </div>
+      </section>
+
+      <!-- 4) Preorder -->
+      <section id="preorder" class="preorder section-spacing">
+        <div class="container">
+          <div class="preorder-container fade-in">
+            <h2 class="section-title">Preorder</h2>
+            <p class="section-lead">Zarezerwuj 360 VISION z pierwszej, nadchodzącej partii.</p>
+
+            <div class="preorder-tiers">
+              <div class="tier-card tier-early">
+                <div class="tier-header">
+                  <p class="tier-label">Founders Edition</p>
+                  <span class="spots-badge">Limitowana Liczba</span>
                 </div>
-                <div class="display-arm">
-                  <div class="display-lens">
-                    <div class="hud-chip">Tył: 12 m</div>
-                    <div class="hud-alert">Auto zbliża się</div>
-                  </div>
-                </div>
+                <p class="tier-name">Preorder z rabatem</p>
+                <p class="tier-desc">Dla rowerzystów, którzy chcą wyznaczać nowe standardy.</p>
+                <a class="btn btn-primary" href="#preorder">Kup w Preorderze</a>
               </div>
-              <p class="visual-caption">Nakładka do kasku · kamera tylna · wyświetlacz HUD</p>
             </div>
           </div>
         </div>
       </section>
 
-      <div class="stats-bar">
-        <div class="container stats-inner">
-          <span>Kamera tylna w czasie rzeczywistym</span>
-          <span class="stats-sep"></span>
-          <span>Premiera targowa 2026</span>
-          <span class="stats-sep"></span>
-          <span>Pasuje do każdego kasku rowerowego</span>
-        </div>
-      </div>
-
-      <section id="funkcje" class="features">
-        <div class="container">
-          <h2>Dlaczego 360Visio?</h2>
-          <div class="feature-grid">
-            <article class="feature-card">
-              <h3>Widok z tyłu przed okiem</h3>
-              <p>Kamera rejestruje drogę za Tobą, a obraz pojawia się w czasie rzeczywistym w wyświetlaczu HUD - bez odrywania wzroku od trasy.</p>
-            </article>
-            <article class="feature-card">
-              <h3>Alerty zagrożeń</h3>
-              <p>Szybko zbliżające się pojazdy są sygnalizowane subtelnym komunikatem wprost w polu widzenia.</p>
-            </article>
-            <article class="feature-card">
-              <h3>Pasuje do Twojego kasku</h3>
-              <p>Nakładka montuje się na dowolnym kasku rowerowym - nie musisz rezygnować z ulubionego sprzętu.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="demo" class="demo">
-        <div class="container demo-grid">
-          <div class="demo-copy">
-            <h2>Symulacja na żywo</h2>
-            <p>
-              Przesuń suwak i zobacz, jak wyświetlacz HUD reaguje na zbliżający się pojazd za rowerzystą.
-              To uproszczona wizualizacja pod stoisko targowe.
-            </p>
-            <label for="distanceRange">Odległość pojazdu: <strong><span id="distanceValue">28</span> m</strong></label>
-            <input id="distanceRange" type="range" min="4" max="40" value="28" />
-            <p id="status" class="status safe" aria-live="polite">Status: bezpieczny dystans</p>
-          </div>
-
-          <div class="demo-view">
-            <div class="rear-scene">
-              <div class="road"></div>
-              <div id="car" class="car"></div>
-              <div class="rider"></div>
-            </div>
-            <p class="caption">Symulacja widoku w soczewce HUD</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="preorder" class="preorder">
-        <div class="container">
-          <p class="kicker">Limitowana edycja</p>
-          <h2>Zarezerwuj 360Visio jako pierwszy</h2>
-          <p class="section-lead">Pierwsze egzemplarze trafią do osób, które zgłoszą się przed premierą. Bez zobowiązań - rezerwujesz miejsce na liście.</p>
-          <div class="preorder-tiers">
-            <div class="tier-card tier-early">
-              <div class="tier-header">
-                <p class="tier-label">Early Bird</p>
-                <span class="spots-badge">Zostało 47 miejsc</span>
-              </div>
-              <p class="tier-name">Przedsprzedaż</p>
-              <p class="tier-desc">Pierwsze miejsce na liście, cena przedpremierowa i bezpośredni kontakt z zespołem.</p>
-              <ul class="tier-perks">
-                <li>Cena przedpremierowa</li>
-                <li>Priorytetowa wysyłka</li>
-                <li>Dostęp do beta testów</li>
-              </ul>
-              <a class="btn btn-primary" href="#kontakt">Rezerwuję miejsce</a>
-            </div>
-            <div class="tier-card tier-standard">
-              <p class="tier-label">Standardowy</p>
-              <p class="tier-name">Lista oczekujących</p>
-              <p class="tier-desc">Dołącz do listy i jako jeden z pierwszych dowiedz się o dostępności produktu.</p>
-              <ul class="tier-perks">
-                <li>Powiadomienie o premierze</li>
-                <li>Aktualności o projekcie</li>
-                <li>Możliwość zakupu w dniu premiery</li>
-              </ul>
-              <a class="btn btn-ghost" href="#kontakt">Dołączam do listy</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="wsparcie" class="support">
-        <div class="container">
-          <p class="kicker">Wesprzyj projekt</p>
-          <h2>Zostań częścią 360Visio</h2>
-          <p class="section-lead">Szukamy partnerów, inwestorów i ambasadorów, którzy wierzą w bezpieczniejszy rower.</p>
-          <div class="support-grid">
-            <div class="support-card">
-              <div class="support-icon">💼</div>
-              <h3>Inwestor</h3>
-              <p>Wejdź na wczesnym etapie i wesprzyj rozwój produktu oraz wejście na rynek.</p>
-              <a class="btn btn-outline" href="#kontakt">Porozmawiajmy</a>
-            </div>
-            <div class="support-card">
-              <div class="support-icon">🤝</div>
-              <h3>Partner dystrybucyjny</h3>
-              <p>Masz sieć sklepów rowerowych lub sportowych? Chętnie nawiążemy współpracę.</p>
-              <a class="btn btn-outline" href="#kontakt">Napisz do nas</a>
-            </div>
-            <div class="support-card">
-              <div class="support-icon">🚴</div>
-              <h3>Ambasador</h3>
-              <p>Jesteś aktywnym rowerzystą z zasięgami? Przetestuj produkt i opowiedz o nim światu.</p>
-              <a class="btn btn-outline" href="#kontakt">Zgłoś się</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="kontakt" class="contact">
-        <div class="container contact-card">
-          <h2>Skontaktuj się z nami</h2>
-          <p>Masz pytania o produkt, współpracę lub przedsprzedaż? Napisz - odezwiemy się.</p>
-          <form id="leadForm" class="lead-form">
-            <div class="lead-grid">
-              <label for="fullName">
-                Imię i nazwisko
-                <input id="fullName" name="fullName" type="text" required autocomplete="name" placeholder="np. Tomasz G." />
-              </label>
-              <label for="email">
-                E-mail
-                <input id="email" name="email" type="email" required autocomplete="email" placeholder="np. kontakt@firma.pl" />
-              </label>
-              <label for="company">
-                Firma
-                <input id="company" name="company" type="text" autocomplete="organization" placeholder="np. Expo Events" />
-              </label>
-              <label for="phone">
-                Telefon
-                <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+48 000 000 000" />
-              </label>
-            </div>
-            <label for="message">
-              Wiadomość
-              <textarea id="message" name="message" rows="3" placeholder="Interesuje nas demo na targi w maju."></textarea>
-            </label>
-            <label class="checkbox-label">
-              <input name="gdpr" type="checkbox" required />
-              <span>Wyrażam zgodę na przetwarzanie moich danych osobowych w celu odpowiedzi na zapytanie. <a href="/polityka-prywatnosci" target="_blank">Polityka prywatności</a>.</span>
-            </label>
-            <button id="leadSubmit" class="btn btn-primary" type="submit">Wyślij zapytanie</button>
-            <p id="leadStatus" class="lead-status" aria-live="polite">Formularz gotowy.</p>
-          </form>
+      <!-- 5) Invest -->
+      <section id="invest" class="invest-section section-spacing">
+        <div class="container text-center">
+          <h2 class="invest-title fade-in">WORLD</h2>
         </div>
       </section>
     </main>
 
     <footer class="footer">
       <div class="container footer-inner">
-        <span>360Visio &copy; 2026</span>
-        <a href="/polityka-prywatnosci" class="footer-link">Polityka prywatności</a>
+        <span>360 VISION &copy; 2026. <br class="mobile-only">Ride Safe!</span>
       </div>
     </footer>
 

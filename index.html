@@ -100,13 +100,12 @@
     <main>
       <!-- 1) Hero -->
       <section id="home" class="hero section-spacing">
+        <div class="hero-video-wrap fade-in">
+          <video class="hero-video" autoplay loop muted playsinline preload="metadata">
+            <source src="./lustro-360-loop.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div class="container hero-container">
-          <div class="hero-video-wrap fade-in">
-            <video class="hero-video" autoplay loop muted playsinline preload="none">
-              <source src="./Lustro 360_loop_v02.mp4" type="video/mp4" />
-            </video>
-          </div>
-
           <h1 class="hero-title fade-in">360 VISION</h1>
           <p class="hero-subtitle fade-in" data-i18n="hero.subtitle">
             Widzisz drogę. My pokazujemy, co jest za Tobą.
@@ -460,6 +459,11 @@
         <a class="footer-link" href="./polityka-prywatnosci.html" data-i18n="footer.privacy">Polityka prywatności</a>
       </div>
     </footer>
+
+    <!-- Floating CTA -->
+    <div id="floatingCta" class="floating-cta" aria-hidden="true">
+      <a href="#preorder" class="btn btn-default">Zamów w przedsprzedaży</a>
+    </div>
 
     <!-- Cookie Banner -->
     <div id="cookieBanner" class="cookie-banner" style="display:none">

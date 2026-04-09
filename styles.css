@@ -150,26 +150,23 @@ p {
 
 /* 1. Hero Section */
 .hero {
-  padding: 8rem 0 4rem;
+  padding-bottom: 4rem;
   position: relative;
-  overflow: hidden;
   text-align: center;
 }
 
 .hero-video-wrap {
-  width: min(420px, 80vw);
-  margin: 0 auto;
-  border-radius: 2rem;
+  width: 100%;
+  padding: 0 2rem;
   overflow: hidden;
   background: #000;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  margin-bottom: 3rem;
 }
 
 .hero-video {
   display: block;
   width: 100%;
   height: auto;
-  object-fit: cover;
   background: #000;
 }
 
@@ -1113,6 +1110,29 @@ p {
 }
 
 /* Cookie Banner */
+/* Floating CTA */
+.floating-cta {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  z-index: 200;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.floating-cta.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.floating-cta .btn {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+}
+
 .cookie-banner {
   position: fixed;
   bottom: 0;

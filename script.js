@@ -177,8 +177,9 @@ if (countDays) {
   countdownInterval = setInterval(updateCountdown, 1000);
 }
 
-// Parallax hero
+// Parallax hero + floating CTA
 const heroSection = document.querySelector(".hero");
+const floatingCta = document.getElementById("floatingCta");
 if (heroSection) {
   const heroVideo = heroSection.querySelector(".hero-video-wrap");
   const heroTitle = heroSection.querySelector(".hero-title");
@@ -189,6 +190,11 @@ if (heroSection) {
       const ratio = scrollY / heroH;
       if (heroVideo) heroVideo.style.transform = `translateY(${ratio * 40}px)`;
       if (heroTitle) heroTitle.style.transform = `translateY(${ratio * 60}px)`;
+    }
+    if (floatingCta) {
+      const show = scrollY > heroH * 0.8;
+      floatingCta.classList.toggle("visible", show);
+      floatingCta.setAttribute("aria-hidden", String(!show));
     }
   }, { passive: true });
 }

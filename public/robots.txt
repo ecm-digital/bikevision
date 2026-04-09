@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bikevision-96319.web.app/sitemap.xml

@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>360 VISION — Panel administracyjny</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #000; --panel: #111; --glass-border: rgba(255,255,255,0.1);
+        --text: #f5f5f7; --muted: #86868b; --accent: #2997ff;
+        --safe: #30d158; --danger: #ff453a;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+        color: var(--text); background: var(--bg);
+        -webkit-font-smoothing: antialiased;
+      }
+      .login-wrap {
+        min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      }
+      .login-card {
+        background: var(--panel); border: 1px solid var(--glass-border);
+        border-radius: 1.25rem; padding: 2.5rem; width: min(400px, 90vw);
+      }
+      .login-card h1 { font-size: 1.5rem; margin: 0 0 0.5rem; }
+      .login-card p { color: var(--muted); font-size: 0.9rem; margin: 0 0 1.5rem; }
+      .login-card label { display: grid; gap: 0.3rem; font-size: 0.9rem; margin-bottom: 0.8rem; }
+      .login-card input {
+        width: 100%; border-radius: 0.7rem; border: 1px solid var(--glass-border);
+        background: rgba(255,255,255,0.03); color: var(--text); padding: 0.7rem 0.85rem;
+        font-family: inherit; font-size: 0.95rem;
+      }
+      .login-card input:focus { outline: 2px solid rgba(41,151,255,0.45); border-color: rgba(41,151,255,0.8); }
+      .login-btn {
+        width: 100%; border: none; border-radius: 980px; background: var(--accent);
+        color: #fff; padding: 0.75rem; font-size: 1rem; font-weight: 600; cursor: pointer;
+        font-family: inherit; margin-top: 0.5rem; transition: background 0.2s;
+      }
+      .login-btn:hover { background: #06c; }
+      .login-error { color: var(--danger); font-size: 0.85rem; margin-top: 0.75rem; min-height: 1.2em; }
+
+      .dashboard { display: none; }
+      .dashboard.active { display: block; }
+      .dash-header {
+        position: sticky; top: 0; z-index: 10; background: rgba(0,0,0,0.9);
+        backdrop-filter: blur(16px); border-bottom: 1px solid var(--glass-border);
+        padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between;
+      }
+      .dash-header h1 { font-size: 1.2rem; margin: 0; }
+      .dash-header button {
+        background: transparent; border: 1px solid var(--glass-border); color: var(--muted);
+        padding: 0.4rem 1rem; border-radius: 980px; cursor: pointer; font-family: inherit;
+        font-size: 0.85rem; transition: all 0.2s;
+      }
+      .dash-header button:hover { color: var(--text); border-color: var(--text); }
+
+      .tabs {
+        display: flex; gap: 0; border-bottom: 1px solid var(--glass-border);
+        padding: 0 2rem; overflow-x: auto;
+      }
+      .tab-btn {
+        background: none; border: none; color: var(--muted); padding: 0.85rem 1.2rem;
+        font-size: 0.9rem; font-weight: 500; cursor: pointer; font-family: inherit;
+        border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap;
+      }
+      .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+      .tab-btn:hover:not(.active) { color: var(--text); }
+      .tab-btn .badge {
+        display: inline-flex; align-items: center; justify-content: center;
+        background: var(--accent); color: #fff; font-size: 0.7rem; font-weight: 700;
+        min-width: 20px; height: 20px; border-radius: 999px; padding: 0 5px; margin-left: 0.4rem;
+      }
+
+      .tab-content { padding: 1.5rem 2rem; }
+      .tab-panel { display: none; }
+      .tab-panel.active { display: block; }
+
+      .stats-row { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+      .stat-card {
+        background: var(--panel); border: 1px solid var(--glass-border);
+        border-radius: 1rem; padding: 1.2rem 1.5rem; flex: 1; min-width: 140px;
+      }
+      .stat-card .stat-value { font-size: 2rem; font-weight: 800; color: var(--accent); }
+      .stat-card .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+      table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+      thead th {
+        text-align: left; padding: 0.6rem 0.8rem; color: var(--muted); font-size: 0.8rem;
+        text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--glass-border);
+        position: sticky; top: 0; background: var(--bg);
+      }
+      tbody td {
+        padding: 0.65rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.04);
+        vertical-align: top; max-width: 250px; overflow: hidden; text-overflow: ellipsis;
+      }
+      tbody tr:hover { background: rgba(255,255,255,0.02); }
+      .date-cell { color: var(--muted); font-size: 0.8rem; white-space: nowrap; }
+      .status-new { color: var(--accent); font-weight: 600; }
+      .empty-state { color: var(--muted); text-align: center; padding: 3rem; font-size: 0.95rem; }
+
+      .table-wrap { overflow-x: auto; }
+      .loading { text-align: center; padding: 2rem; color: var(--muted); }
+      .export-btn {
+        background: transparent; border: 1px solid var(--glass-border); color: var(--muted);
+        padding: 0.4rem 1rem; border-radius: 980px; cursor: pointer; font-family: inherit;
+        font-size: 0.8rem; font-weight: 500; transition: all 0.2s; margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.4rem;
+      }
+      .export-btn:hover { color: var(--text); border-color: var(--text); }
+      .export-btn svg { width: 14px; height: 14px; }
+
+      .toast-container {
+        position: fixed; top: 1rem; right: 1rem; z-index: 1000; display: flex; flex-direction: column; gap: 0.5rem;
+      }
+      .toast {
+        background: var(--panel); border: 1px solid var(--accent); border-radius: 0.75rem;
+        padding: 0.75rem 1.2rem; color: var(--text); font-size: 0.85rem;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.6); animation: toastIn 0.3s ease, toastOut 0.3s ease 3.7s forwards;
+        max-width: 340px;
+      }
+      .toast strong { color: var(--accent); }
+      @keyframes toastIn { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+      @keyframes toastOut { from { opacity: 1; } to { opacity: 0; transform: translateY(-10px); } }
+
+      @media (max-width: 768px) {
+        .dash-header { padding: 0.8rem 1rem; }
+        .tabs { padding: 0 1rem; }
+        .tab-content { padding: 1rem; }
+        .stats-row { flex-direction: column; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Login -->
+    <div id="loginWrap" class="login-wrap">
+      <div class="login-card">
+        <h1>360 VISION</h1>
+        <p>Panel administracyjny — zaloguj się</p>
+        <form id="loginForm">
+          <label>
+            E-mail
+            <input id="loginEmail" type="email" placeholder="admin@360vision.bike" required />
+          </label>
+          <label>
+            Hasło
+            <input id="loginPassword" type="password" placeholder="••••••••" required />
+          </label>
+          <button class="login-btn" type="submit">Zaloguj się</button>
+          <p id="loginError" class="login-error"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard">
+      <div class="dash-header">
+        <h1>360 VISION — Panel</h1>
+        <div style="display:flex;gap:0.5rem;align-items:center">
+          <span id="userEmail" style="color:var(--muted);font-size:0.85rem"></span>
+          <button id="logoutBtn">Wyloguj</button>
+        </div>
+      </div>
+      <div class="tabs" id="tabsBar">
+        <button class="tab-btn active" data-tab="orders">Zamówienia <span class="badge" id="badgeOrders">0</span></button>
+        <button class="tab-btn" data-tab="leads">Kontakt <span class="badge" id="badgeLeads">0</span></button>
+        <button class="tab-btn" data-tab="beta">Beta testerzy <span class="badge" id="badgeBeta">0</span></button>
+        <button class="tab-btn" data-tab="newsletter">Newsletter <span class="badge" id="badgeNewsletter">0</span></button>
+      </div>
+      <div class="tab-content">
+        <div class="tab-panel active" id="panel-orders">
+          <div class="stats-row" id="statsOrders"></div>
+          <button class="export-btn" data-export="orders"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Eksportuj CSV</button>
+          <div class="table-wrap"><table><thead id="theadOrders"></thead><tbody id="tbodyOrders"></tbody></table></div>
+        </div>
+        <div class="tab-panel" id="panel-leads">
+          <button class="export-btn" data-export="leads"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Eksportuj CSV</button>
+          <div class="table-wrap"><table><thead id="theadLeads"></thead><tbody id="tbodyLeads"></tbody></table></div>
+        </div>
+        <div class="tab-panel" id="panel-beta">
+          <button class="export-btn" data-export="beta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Eksportuj CSV</button>
+          <div class="table-wrap"><table><thead id="theadBeta"></thead><tbody id="tbodyBeta"></tbody></table></div>
+        </div>
+        <div class="tab-panel" id="panel-newsletter">
+          <button class="export-btn" data-export="newsletter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Eksportuj CSV</button>
+          <div class="table-wrap"><table><thead id="theadNewsletter"></thead><tbody id="tbodyNewsletter"></tbody></table></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import { initializeApp } from "firebase/app";
+      import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+      import { getFirestore, collection, query, orderBy, onSnapshot } from "firebase/firestore";
+      import { firebaseConfig } from "./firebase-config.js";
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+
+      const loginWrap = document.getElementById("loginWrap");
+      const dashboard = document.getElementById("dashboard");
+      const loginForm = document.getElementById("loginForm");
+      const loginError = document.getElementById("loginError");
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          loginWrap.style.display = "none";
+          dashboard.classList.add("active");
+          document.getElementById("userEmail").textContent = user.email;
+          loadAllData();
+        } else {
+          loginWrap.style.display = "flex";
+          dashboard.classList.remove("active");
+        }
+      });
+
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        loginError.textContent = "";
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
+        try {
+          await signInWithEmailAndPassword(auth, email, password);
+        } catch (err) {
+          loginError.textContent = err.code === "auth/invalid-credential"
+            ? "Nieprawidłowy e-mail lub hasło."
+            : `Błąd: ${err.message}`;
+        }
+      });
+
+      document.getElementById("logoutBtn").addEventListener("click", () => signOut(auth));
+
+      // Tabs
+      document.getElementById("tabsBar").addEventListener("click", (e) => {
+        const btn = e.target.closest(".tab-btn");
+        if (!btn) return;
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById(`panel-${btn.dataset.tab}`).classList.add("active");
+      });
+
+      function formatDate(ts) {
+        if (!ts) return "—";
+        const d = ts.toDate ? ts.toDate() : new Date(ts);
+        return d.toLocaleDateString("pl-PL", { day:"2-digit", month:"2-digit", year:"numeric", hour:"2-digit", minute:"2-digit" });
+      }
+
+      function renderTable(theadId, tbodyId, columns, rows) {
+        const thead = document.getElementById(theadId);
+        const tbody = document.getElementById(tbodyId);
+        thead.innerHTML = `<tr>${columns.map(c => `<th>${c.label}</th>`).join("")}</tr>`;
+        if (rows.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="${columns.length}" class="empty-state">Brak danych</td></tr>`;
+          return;
+        }
+        tbody.innerHTML = rows.map(row =>
+          `<tr>${columns.map(c => {
+            const val = c.key === "createdAt" ? `<span class="date-cell">${formatDate(row[c.key])}</span>`
+              : c.key === "status" ? `<span class="status-new">${row[c.key] || "new"}</span>`
+              : (row[c.key] || "—");
+            return `<td>${val}</td>`;
+          }).join("")}</tr>`
+        ).join("");
+      }
+
+      const dataStore = {};
+
+      function toCSV(columns, rows) {
+        const header = columns.map(c => c.label).join(",");
+        const lines = rows.map(row =>
+          columns.map(c => {
+            let val = c.key === "createdAt" ? formatDate(row[c.key]) : (row[c.key] ?? "");
+            val = String(val).replace(/"/g, '""');
+            return `"${val}"`;
+          }).join(",")
+        );
+        return [header, ...lines].join("\n");
+      }
+
+      function downloadCSV(filename, csv) {
+        const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      document.querySelectorAll(".export-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const key = btn.dataset.export;
+          const entry = dataStore[key];
+          if (!entry || entry.rows.length === 0) return;
+          downloadCSV(`360vision_${key}_${new Date().toISOString().slice(0,10)}.csv`, toCSV(entry.columns, entry.rows));
+        });
+      });
+
+      const ordersColumns = [
+        { key: "createdAt", label: "Data" },
+        { key: "fullName", label: "Imię i nazwisko" },
+        { key: "email", label: "E-mail" },
+        { key: "phone", label: "Telefon" },
+        { key: "quantity", label: "Ilość" },
+        { key: "notes", label: "Uwagi" },
+        { key: "status", label: "Status" },
+      ];
+      const leadsColumns = [
+        { key: "createdAt", label: "Data" },
+        { key: "fullName", label: "Imię i nazwisko" },
+        { key: "email", label: "E-mail" },
+        { key: "company", label: "Firma" },
+        { key: "phone", label: "Telefon" },
+        { key: "message", label: "Wiadomość" },
+      ];
+      const betaColumns = [
+        { key: "createdAt", label: "Data" },
+        { key: "fullName", label: "Imię i nazwisko" },
+        { key: "email", label: "E-mail" },
+        { key: "ridingStyle", label: "Styl jazdy" },
+        { key: "notes", label: "Motywacja" },
+      ];
+      const newsletterColumns = [
+        { key: "createdAt", label: "Data" },
+        { key: "email", label: "E-mail" },
+      ];
+
+      const prevCounts = { orders: 0, leads: 0, beta: 0, newsletter: 0 };
+      let initialLoad = true;
+
+      function showToast(msg) {
+        const container = document.getElementById("toastContainer");
+        const toast = document.createElement("div");
+        toast.className = "toast";
+        toast.innerHTML = msg;
+        container.appendChild(toast);
+        setTimeout(() => toast.remove(), 4000);
+        try { new Audio("data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgipGUlZaUkH6EjI+GfYJ/gYqVkoh4dICHkYqGgIGAhImRkIp2cHuEjpGJfnl3fo2ckoh5d3yGk5aRgoB8fIGGiIqGfn6BiI2PkImDgIGFiImHhYGChIeKiomGgoGDh4qMi4eEgYOHioyKiIWCg4eKi4mHhIKEh4qKiYeFg4SHiouKh4SChIeJiomHhYOEh4qKiYaFg4SHiYqJh4WDhIeJiYmHhYOEh4mKiIeFg4SHiYmIh4WDhYeJiYmHhIOEh4mJiIeFg4SHiYmIh4WDhIeJiYiHhYOEh4mJiIeFg4SHiYmIh4WDhIeJiYiHhYOEh4mJiIeFhIOEh4mJiIeFhIOEh4mJiIeFhIOEh4mIiIeFhIOFh4mIiIaEhIOFh4mIiIaEhIOFh4iIiIaEhIOFh4iIiIaEhIOFh4iIiIaEhIOFh4iIiIaEhIOFh4iIiIaEhIOFh4iIiIaEhA==").play(); } catch(e) {}
+      }
+
+      function updateStats() {
+        const orders = dataStore.orders?.rows || [];
+        const leads = dataStore.leads?.rows || [];
+        const betas = dataStore.beta?.rows || [];
+        const newsletters = dataStore.newsletter?.rows || [];
+        const totalQty = orders.reduce((s, o) => s + (parseInt(o.quantity) || 1), 0);
+        document.getElementById("statsOrders").innerHTML = `
+          <div class="stat-card"><div class="stat-value">${orders.length}</div><div class="stat-label">Zamówienia</div></div>
+          <div class="stat-card"><div class="stat-value">${totalQty}</div><div class="stat-label">Sztuk łącznie</div></div>
+          <div class="stat-card"><div class="stat-value">${leads.length}</div><div class="stat-label">Kontakty</div></div>
+          <div class="stat-card"><div class="stat-value">${betas.length}</div><div class="stat-label">Beta testerzy</div></div>
+          <div class="stat-card"><div class="stat-value">${newsletters.length}</div><div class="stat-label">Newsletter</div></div>
+        `;
+      }
+
+      function listenCollection(name, storeKey, badgeId, theadId, tbodyId, columns, label) {
+        const q = query(collection(db, name), orderBy("createdAt", "desc"));
+        onSnapshot(q, (snap) => {
+          const rows = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+          const newCount = rows.length;
+          const oldCount = prevCounts[storeKey];
+
+          document.getElementById(badgeId).textContent = newCount;
+          dataStore[storeKey] = { columns, rows };
+          renderTable(theadId, tbodyId, columns, rows);
+          updateStats();
+
+          if (!initialLoad && newCount > oldCount) {
+            const diff = newCount - oldCount;
+            showToast(`<strong>+${diff}</strong> ${label}`);
+          }
+          prevCounts[storeKey] = newCount;
+        }, (err) => {
+          console.error(`Błąd nasłuchiwania ${name}:`, err);
+        });
+      }
+
+      function loadAllData() {
+        listenCollection("orders", "orders", "badgeOrders", "theadOrders", "tbodyOrders", ordersColumns, "nowe zamówienie");
+        listenCollection("leads", "leads", "badgeLeads", "theadLeads", "tbodyLeads", leadsColumns, "nowy kontakt");
+        listenCollection("beta_testers", "beta", "badgeBeta", "theadBeta", "tbodyBeta", betaColumns, "nowy beta tester");
+        listenCollection("newsletter_subscribers", "newsletter", "badgeNewsletter", "theadNewsletter", "tbodyNewsletter", newsletterColumns, "nowy subscriber");
+        setTimeout(() => { initialLoad = false; }, 2000);
+      }
+    </script>
+  </body>
+</html>

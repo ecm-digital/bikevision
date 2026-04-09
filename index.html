@@ -3,17 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>360 VISION</title>
-    <meta name="description" content="Breakthrough rear-vision system. Ride Safe! New invention!" />
+    <title>360 VISION — Widzisz drogę. My pokazujemy, co jest za Tobą.</title>
+    <meta
+      name="description"
+      content="360 VISION to optyczny system tylnej wizji dla rowerzystów. Układ soczewek montowany na kasku pokazuje, co jest za Tobą — bez elektroniki, bez odwracania głowy."
+    />
 
     <!-- Open Graph -->
-    <meta property="og:title" content="360 VISION - Breakthrough rear-vision system" />
-    <meta property="og:description" content="Ride Safe! New invention! 360 VISION." />
+    <meta property="og:title" content="360 VISION — System tylnej wizji dla rowerzystów" />
+    <meta property="og:description" content="Optyczny system soczewek montowany na kasku. Widzisz, co jest za Tobą — bez elektroniki, bez odwracania głowy." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://bikevision-96319.web.app" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://bikevision-96319.web.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="360 VISION — System tylnej wizji dla rowerzystów" />
+    <meta name="twitter:description" content="Optyczny system soczewek montowany na kasku. Widzisz, co jest za Tobą — bez elektroniki, bez odwracania głowy." />
+    <meta name="twitter:image" content="https://bikevision-96319.web.app/og-image.png" />
+
+    <link rel="canonical" href="https://bikevision-96319.web.app/" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "360 VISION",
+      "description": "Optyczny system tylnej wizji dla rowerzystów — układ soczewek montowany na kasku pokazuje, co jest za Tobą.",
+      "brand": {
+        "@type": "Brand",
+        "name": "360 VISION"
+      },
+      "url": "https://bikevision-96319.web.app/",
+      "image": "https://bikevision-96319.web.app/og-image.png",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/PreOrder",
+        "priceCurrency": "PLN",
+        "url": "https://bikevision-96319.web.app/#preorder"
+      }
+    }
+    </script>
 
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -26,94 +61,441 @@
           <a href="#home" style="text-decoration: none; color: inherit;">360 VISION</a>
         </div>
         <nav class="topbar-nav">
-          <a href="#home">Home</a>
-          <a href="#product">The Product</a>
-          <a href="#inventors">The Inventors</a>
-          <a href="#preorder">Preorder</a>
-          <a href="#invest">Invest</a>
+          <a href="#home" data-i18n="nav.start">Start</a>
+          <a href="#product" data-i18n="nav.product">Produkt</a>
+          <a href="#how" data-i18n="nav.how">Jak działa</a>
+          <a href="#inventors" data-i18n="nav.team">Zespół</a>
+          <a href="#preorder" data-i18n="nav.preorder">Przedsprzedaż</a>
+          <a href="#invest" data-i18n="nav.partners">Partnerzy</a>
+          <a href="#contact" data-i18n="nav.contact">Kontakt</a>
+          <a href="#betatester" data-i18n="nav.beta">Beta testy</a>
+          <a href="#newsletter" data-i18n="nav.newsletter">Newsletter</a>
         </nav>
-        <a class="btn btn-default btn-sm" href="#preorder">Preorder</a>
+        <div class="topbar-right">
+          <div class="lang-switch" id="langSwitch">
+            <button class="lang-btn active" data-lang="pl">PL</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+          <a class="btn btn-default btn-sm topbar-cta" href="#preorder" data-i18n="nav.cta">Zamów jako pierwszy</a>
+          <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
       </div>
     </header>
+    <div class="mobile-overlay" id="mobileOverlay">
+      <nav class="mobile-nav">
+        <a href="#home" data-i18n="nav.start">Start</a>
+        <a href="#product" data-i18n="nav.product">Produkt</a>
+        <a href="#how" data-i18n="nav.how">Jak działa</a>
+        <a href="#inventors" data-i18n="nav.team">Zespół</a>
+        <a href="#preorder" data-i18n="nav.preorder">Przedsprzedaż</a>
+        <a href="#invest" data-i18n="nav.partners">Partnerzy</a>
+        <a href="#contact" data-i18n="nav.contact">Kontakt</a>
+        <a href="#betatester" data-i18n="nav.beta">Beta testy</a>
+        <a href="#newsletter" data-i18n="nav.newsletter">Newsletter</a>
+      </nav>
+    </div>
 
     <main>
-      <!-- 1) Home -->
+      <!-- 1) Hero -->
       <section id="home" class="hero section-spacing">
         <div class="container hero-container">
-          <!-- GIF placeholder -->
-          <div class="gif-placeholder fade-in">
-             <div class="gif-placeholder-inner">
-                 <span class="gif-icon">🔄</span>
-                 <span>(miejsce na animowany GIF - obracające się okulary)</span>
-             </div>
+          <div class="hero-video-wrap fade-in">
+            <video class="hero-video" autoplay loop muted playsinline preload="none">
+              <source src="./hero-video.mp4" type="video/mp4" />
+            </video>
           </div>
-          
+
           <h1 class="hero-title fade-in">360 VISION</h1>
-          <p class="hero-subtitle fade-in">
-            NEW rear vision system
+          <p class="hero-subtitle fade-in" data-i18n="hero.subtitle">
+            Widzisz drogę. My pokazujemy, co jest za Tobą.
           </p>
+          <p class="hero-desc fade-in" data-i18n="hero.desc">
+            Optyczny system soczewek montowany na kasku rowerowym.<br />
+            Widzisz, co dzieje się za Tobą — bez elektroniki, bez baterii, bez odwracania głowy.
+          </p>
+          <div class="hero-cta fade-in">
+            <a class="btn btn-primary" href="#product" data-track="hero-learn-more" data-i18n="hero.cta1">Poznaj produkt</a>
+            <a class="btn btn-default btn-pulse" href="#preorder" data-track="hero-preorder" data-i18n="hero.cta2">Zamów w przedsprzedaży</a>
+          </div>
         </div>
       </section>
 
-      <!-- 2) The Product -->
+      <!-- Countdown -->
+      <section id="countdown" class="countdown-section">
+        <div class="container text-center">
+          <p class="countdown-label fade-in" data-i18n="countdown.label">Do premiery pozostało</p>
+          <div id="countdownGrid" class="countdown-grid fade-in">
+            <div class="countdown-tile">
+              <span class="countdown-value" id="countDays">00</span>
+              <span class="countdown-unit" data-i18n="countdown.days">dni</span>
+            </div>
+            <div class="countdown-tile">
+              <span class="countdown-value" id="countHours">00</span>
+              <span class="countdown-unit" data-i18n="countdown.hours">godzin</span>
+            </div>
+            <div class="countdown-tile">
+              <span class="countdown-value" id="countMinutes">00</span>
+              <span class="countdown-unit" data-i18n="countdown.minutes">minut</span>
+            </div>
+            <div class="countdown-tile">
+              <span class="countdown-value" id="countSeconds">00</span>
+              <span class="countdown-unit" data-i18n="countdown.seconds">sekund</span>
+            </div>
+          </div>
+          <div id="countdownLaunched" class="countdown-launched" style="display:none">
+            <h2 class="section-title" data-i18n="countdown.launched">Premiera!</h2>
+            <p class="section-lead" data-i18n="countdown.launched.desc">360 VISION jest już dostępny. Zamów teraz.</p>
+            <a class="btn btn-default btn-pulse" href="#preorder" data-track="countdown-order" data-i18n="countdown.launched.cta">Zamów teraz</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2) Produkt -->
       <section id="product" class="product-section section-spacing">
         <div class="container text-center">
-          <h2 class="section-title fade-in">Breakthrough rear-vision system</h2>
-          <h3 class="product-catchphrase fade-in">Ride Safe!</h3>
-          <p class="product-desc fade-in">
-            New invention!
+          <p class="section-kicker fade-in" data-i18n="product.kicker1">Problem</p>
+          <h2 class="section-title fade-in" data-i18n="product.title">Co sekundę na drodze dzieje się coś, czego nie widzisz.</h2>
+          <p class="product-desc fade-in" data-i18n="product.desc1">
+            Samochód wyprzedza zbyt blisko. Inny rowerzysta jedzie tuż za Tobą.
+            Odwracanie głowy to utrata kontroli — a lusterka blokują widok i wypadają na nierównościach.
+          </p>
+
+          <p class="section-kicker fade-in" style="margin-top: 4rem;" data-i18n="product.kicker2">Rozwiązanie</p>
+          <h3 class="product-catchphrase fade-in" data-i18n="product.catchphrase">360 VISION — trzecie oko rowerzysty.</h3>
+          <p class="product-desc fade-in" data-i18n="product.desc2">
+            Precyzyjnie zaprojektowany układ soczewek montowany na kasku przechwytuje obraz drogi za Tobą
+            i kieruje go wprost do Twojego pola widzenia. Czysta optyka — bez elektroniki, bez baterii, bez ładowania.
           </p>
         </div>
       </section>
 
-      <!-- 3) The Inventors -->
+      <!-- 3) Jak to działa -->
+      <section id="how" class="how-section section-spacing">
+        <div class="container text-center">
+          <h2 class="section-title fade-in" data-i18n="how.title">Jak to działa?</h2>
+          <p class="section-lead fade-in" data-i18n="how.lead">Prosty układ optyczny, trzy zasady działania.</p>
+          <div class="steps-grid">
+            <div class="step-card glow-card fade-in" data-delay="1">
+              <span class="step-number">1</span>
+              <h3 data-i18n="how.step1.title">Soczewka zbierająca</h3>
+              <p data-i18n="how.step1.desc">Tylna soczewka przechwytuje szeroki obraz drogi za rowerzystą — podobnie jak lusterko, ale bez wystających elementów.</p>
+            </div>
+            <div class="step-card glow-card fade-in" data-delay="2">
+              <span class="step-number">2</span>
+              <h3 data-i18n="how.step2.title">Układ optyczny</h3>
+              <p data-i18n="how.step2.desc">Światło przechodzi przez precyzyjnie ustawione soczewki wewnątrz nakładki, które kierują i korygują obraz.</p>
+            </div>
+            <div class="step-card glow-card fade-in" data-delay="3">
+              <span class="step-number">3</span>
+              <h3 data-i18n="how.step3.title">Obraz w polu widzenia</h3>
+              <p data-i18n="how.step3.desc">Końcowa soczewka wyświetla obraz z tyłu dyskretnie w rogu pola widzenia — widzisz go jednym spojrzeniem, bez odwracania głowy.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4) Zespół -->
       <section id="inventors" class="inventors-section section-spacing">
         <div class="container text-center">
-          <h2 class="section-title fade-in">The Inventors</h2>
+          <h2 class="section-title fade-in" data-i18n="team.title">Ludzie, którzy to budują</h2>
+          <p class="section-lead fade-in" data-i18n="team.lead">
+            360 VISION powstaje na styku inżynierii optycznej, designu produktowego i pasji do kolarstwa.
+            Łączymy wiedzę o optyce z tysiącami kilometrów przejechanych na rowerze.
+          </p>
           <div class="inventors-grid fade-in">
             <div class="inventor-card">
-              <div class="inventor-avatar"></div>
-              <h3>...</h3>
+              <div class="inventor-avatar avatar-initials">T</div>
+              <h3 data-i18n="team.name1">Tomasz</h3>
+              <p class="inventor-role" data-i18n="team.role1">Produkt &amp; Strategia</p>
+              <p class="inventor-bio" data-i18n="team.bio1">Strateg produktowy z doświadczeniem w hardware startupach. Odpowiada za wizję i rozwój rynkowy.</p>
+            </div>
+            <div class="inventor-card">
+              <div class="inventor-avatar avatar-initials">A</div>
+              <h3 data-i18n="team.name2">Alex</h3>
+              <p class="inventor-role" data-i18n="team.role2">Optyka &amp; Hardware</p>
+              <p class="inventor-bio" data-i18n="team.bio2">Inżynier optyki z pasją do kolarstwa. Projektuje systemy soczewek, które działają w każdych warunkach.</p>
+            </div>
+            <div class="inventor-card">
+              <div class="inventor-avatar avatar-initials">J</div>
+              <h3 data-i18n="team.name3">Janusz</h3>
+              <p class="inventor-role" data-i18n="team.role3">Inżynieria &amp; Prototypy</p>
+              <p class="inventor-bio" data-i18n="team.bio3">Inżynier mechanik odpowiedzialny za prototypowanie i testy wytrzymałościowe. Zamienia projekty w działające urządzenia.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 4) Preorder -->
+      <!-- 5) Przedsprzedaż -->
       <section id="preorder" class="preorder section-spacing">
         <div class="container">
-          <div class="preorder-container fade-in">
-            <h2 class="section-title">Preorder</h2>
-            <p class="section-lead">Zarezerwuj 360 VISION z pierwszej, nadchodzącej partii.</p>
-
-            <div class="preorder-tiers">
-              <div class="tier-card tier-early">
+          <div class="form-section-card fade-in">
+            <div class="form-section-copy">
+              <h2 class="section-title" data-i18n="preorder.title">Bądź jednym z pierwszych</h2>
+              <p class="section-lead" data-i18n="preorder.lead">
+                Pierwsza partia 360 VISION trafi do osób, które zarezerwują miejsce przed premierą.
+                Bez zobowiązań — zabezpieczasz swoją pozycję na liście i cenę założycielską.
+              </p>
+              <div class="tier-card tier-early glow-card" style="margin-top:1.5rem">
                 <div class="tier-header">
-                  <p class="tier-label">Founders Edition</p>
-                  <span class="spots-badge">Limitowana Liczba</span>
+                  <p class="tier-label" data-i18n="preorder.label">Edycja założycielska</p>
+                  <span class="spots-badge" data-i18n="preorder.badge">Limitowana liczba</span>
                 </div>
-                <p class="tier-name">Preorder z rabatem</p>
-                <p class="tier-desc">Dla rowerzystów, którzy chcą wyznaczać nowe standardy.</p>
-                <a class="btn btn-primary" href="#preorder">Kup w Preorderze</a>
+                <ul class="tier-perks">
+                  <li data-i18n="preorder.perk1">Gwarantowana cena przedpremierowa</li>
+                  <li data-i18n="preorder.perk2">Priorytetowa wysyłka z pierwszej partii</li>
+                  <li data-i18n="preorder.perk3">Bezpośredni kontakt z zespołem — Twój feedback kształtuje produkt</li>
+                </ul>
               </div>
+            </div>
+            <div id="orderCounter" class="order-counter" style="display:none">
+              <span class="order-counter-icon">🔥</span>
+              <span data-i18n="preorder.counter_prefix">Już</span>
+              <strong id="orderCountValue">0</strong>
+              <span data-i18n="preorder.counter_suffix">osób zamówiło</span>
+            </div>
+            <form id="orderForm" class="site-form">
+              <div class="form-row">
+                <label>
+                  <span data-i18n="order.name">Imię i nazwisko</span>
+                  <input name="fullName" type="text" placeholder="Jan Kowalski" required />
+                </label>
+                <label>
+                  <span data-i18n="order.email">E-mail</span>
+                  <input name="email" type="email" placeholder="jan@example.pl" required />
+                </label>
+              </div>
+              <div class="form-row">
+                <label>
+                  <span data-i18n="order.phone">Telefon</span>
+                  <input name="phone" type="tel" placeholder="+48 000 000 000" pattern="^\+?[0-9\s\-]{7,18}$" title="+48 123 456 789" required />
+                </label>
+                <label>
+                  <span data-i18n="order.qty">Ilość</span>
+                  <select name="quantity" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="10">10+</option>
+                  </select>
+                </label>
+              </div>
+              <label>
+                <span data-i18n="order.notes">Uwagi do zamówienia</span>
+                <textarea name="notes" rows="2" placeholder="Opcjonalnie"></textarea>
+              </label>
+              <label class="checkbox-label">
+                <input name="gdprConsent" type="checkbox" required />
+                <span data-i18n="order.gdpr">Wyrażam zgodę na przetwarzanie danych osobowych w celu realizacji zamówienia.</span>
+              </label>
+              <button id="orderSubmit" class="btn btn-default" type="submit" data-track="preorder-reserve" data-i18n="order.submit">Zamawiam w przedsprzedaży</button>
+              <p id="orderStatus" class="form-status"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6) Partnerzy -->
+      <section id="invest" class="invest-section section-spacing">
+        <div class="container text-center">
+          <h2 class="section-title fade-in" data-i18n="invest.title">Dołącz do projektu jako partner</h2>
+          <p class="section-lead fade-in" data-i18n="invest.lead">
+            Szukamy partnerów, którzy widzą przyszłość bezpiecznej mikromobilności.
+            Rynek rowerowy rośnie — brakuje mu jednej rzeczy: prawdziwego systemu tylnej wizji, który faktycznie działa.
+          </p>
+          <div class="invest-cards fade-in">
+            <div class="invest-card glow-card">
+              <h3 data-i18n="invest.investor">Inwestor</h3>
+              <p data-i18n="invest.investor.desc">Wejdź na wczesnym etapie. Wesprzyj rozwój produktu i wejście na rynek europejski.</p>
+              <a class="btn btn-primary" href="mailto:invest@360vision.bike" data-track="invest-contact" data-i18n="invest.investor.btn">Porozmawiajmy</a>
+            </div>
+            <div class="invest-card glow-card">
+              <h3 data-i18n="invest.partner">Partner dystrybucyjny</h3>
+              <p data-i18n="invest.partner.desc">Prowadzisz sklep rowerowy lub sieć? Szukamy partnerów do pierwszej fali sprzedaży.</p>
+              <a class="btn btn-primary" href="mailto:partner@360vision.bike" data-track="partner-contact" data-i18n="invest.partner.btn">Napisz do nas</a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 5) Invest -->
-      <section id="invest" class="invest-section section-spacing">
-        <div class="container text-center">
-          <h2 class="invest-title fade-in">WORLD</h2>
+      <!-- 7) Kontakt -->
+      <section id="contact" class="contact-section section-spacing">
+        <div class="container">
+          <div class="form-section-card fade-in">
+            <div class="form-section-copy">
+              <h2 class="section-title" data-i18n="contact.title">Skontaktuj się z nami</h2>
+              <p class="section-lead" data-i18n="contact.lead">
+                Masz pytania o produkt, współpracę lub przedsprzedaż? Napisz — odezwiemy się.
+              </p>
+            </div>
+            <form id="leadForm" class="site-form">
+              <div class="form-row">
+                <label>
+                  <span data-i18n="contact.name">Imię i nazwisko</span>
+                  <input name="fullName" type="text" placeholder="Jan Kowalski" required />
+                </label>
+                <label>
+                  <span data-i18n="contact.email">E-mail</span>
+                  <input name="email" type="email" placeholder="jan@example.pl" required />
+                </label>
+              </div>
+              <div class="form-row">
+                <label>
+                  <span data-i18n="contact.company">Firma</span>
+                  <input name="company" type="text" placeholder="Opcjonalnie" />
+                </label>
+                <label>
+                  <span data-i18n="contact.phone">Telefon</span>
+                  <input name="phone" type="tel" placeholder="+48 000 000 000" pattern="^\+?[0-9\s\-]{7,18}$" title="+48 123 456 789" />
+                </label>
+              </div>
+              <label>
+                <span data-i18n="contact.message">Wiadomość</span>
+                <textarea name="message" rows="3" placeholder="W czym możemy pomóc?"></textarea>
+              </label>
+              <label class="checkbox-label">
+                <input name="gdprConsent" type="checkbox" required />
+                <span data-i18n="contact.gdpr">Wyrażam zgodę na przetwarzanie danych osobowych w celu odpowiedzi na zapytanie.</span>
+              </label>
+              <button id="leadSubmit" class="btn btn-default" type="submit" data-i18n="contact.submit">Wyślij wiadomość</button>
+              <p id="leadStatus" class="form-status"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8) Beta testy -->
+      <section id="betatester" class="betatester-section section-spacing">
+        <div class="container">
+          <div class="form-section-card fade-in">
+            <div class="form-section-copy">
+              <h2 class="section-title" data-i18n="beta.title">Przetestuj 360 VISION przed wszystkimi</h2>
+              <p class="section-lead" data-i18n="beta.lead">
+                Szukamy aktywnych rowerzystów, którzy chcą jeździć z prototypem,
+                zgłaszać uwagi i wpływać na finalny kształt urządzenia.
+                W zamian dostajesz wczesny dostęp i bezpośredni kontakt z naszym zespołem.
+              </p>
+              <ul class="benefits-list">
+                <li data-i18n="beta.perk1">Prototyp do testów w realnych warunkach jazdy</li>
+                <li data-i18n="beta.perk2">Bezpośrednia linia do zespołu produktowego</li>
+                <li data-i18n="beta.perk3">Twoje uwagi kształtują finalny produkt</li>
+                <li data-i18n="beta.perk4">Zniżka na wersję premierową</li>
+              </ul>
+            </div>
+            <form id="betaForm" class="site-form">
+              <label>
+                <span data-i18n="beta.name">Imię i nazwisko</span>
+                <input name="fullName" type="text" placeholder="Jan Kowalski" required />
+              </label>
+              <label>
+                <span data-i18n="beta.email">E-mail</span>
+                <input name="email" type="email" placeholder="jan@example.pl" required />
+              </label>
+              <label>
+                <span data-i18n="beta.style">Jaki jest Twój styl jazdy?</span>
+                <select name="ridingStyle" required>
+                  <option value="" selected disabled data-i18n="beta.style.placeholder">Wybierz styl</option>
+                  <option value="city" data-i18n="beta.style.city">Miasto / dojazdy do pracy</option>
+                  <option value="road" data-i18n="beta.style.road">Szosa / kolarstwo szosowe</option>
+                  <option value="mtb" data-i18n="beta.style.mtb">MTB / gravel</option>
+                  <option value="triathlon" data-i18n="beta.style.triathlon">Triathlon / wielobój</option>
+                  <option value="other" data-i18n="beta.style.other">Inny</option>
+                </select>
+              </label>
+              <label>
+                <span data-i18n="beta.why">Dlaczego chcesz testować 360 VISION?</span>
+                <textarea name="notes" rows="3" placeholder="Opowiedz w kilku zdaniach o swojej jeździe i motywacji."></textarea>
+              </label>
+              <button id="betaSubmit" class="btn btn-default" type="submit" data-i18n="beta.submit">Zgłaszam się na beta testy</button>
+              <p id="betaStatus" class="form-status"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9) Newsletter -->
+      <section id="newsletter" class="newsletter-section section-spacing">
+        <div class="container">
+          <div class="newsletter-card fade-in">
+            <h2 class="section-title" data-i18n="newsletter.title">Bądź na bieżąco</h2>
+            <p class="section-lead" data-i18n="newsletter.lead">
+              Dołącz do listy i jako pierwszy dowiaduj się o postępach projektu,
+              dacie premiery i starcie przedsprzedaży. Żadnego spamu — tylko konkrety.
+            </p>
+            <form id="newsletterForm" class="newsletter-form">
+              <input
+                name="email"
+                type="email"
+                placeholder="Twój adres e-mail"
+                aria-label="Adres e-mail do newslettera"
+                required
+              />
+              <button id="newsletterSubmit" type="submit" class="btn btn-default" data-i18n="newsletter.submit">Zapisuję się</button>
+            </form>
+            <p id="newsletterStatus" class="form-status"></p>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="footer">
       <div class="container footer-inner">
-        <span>360 VISION &copy; 2026. <br class="mobile-only">Ride Safe!</span>
+        <span>360 VISION &copy; 2026</span>
+        <div class="footer-social">
+          <a href="https://facebook.com/360vision.bike" target="_blank" rel="noopener" aria-label="Facebook" class="social-link">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 6.025 4.388 11.022 10.125 11.927v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97H15.83c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796v8.437C19.612 23.095 24 18.098 24 12.073z"/></svg>
+          </a>
+          <a href="https://instagram.com/360vision.bike" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.97.24 2.43.403a4.088 4.088 0 0 1 1.523.99 4.088 4.088 0 0 1 .99 1.524c.163.46.349 1.26.403 2.43.058 1.265.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.24 1.97-.403 2.43a4.088 4.088 0 0 1-.99 1.523 4.088 4.088 0 0 1-1.524.99c-.46.163-1.26.349-2.43.403-1.265.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.97-.24-2.43-.403a4.088 4.088 0 0 1-1.523-.99 4.088 4.088 0 0 1-.99-1.524c-.163-.46-.349-1.26-.403-2.43C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.054-1.17.24-1.97.403-2.43a4.088 4.088 0 0 1 .99-1.523A4.088 4.088 0 0 1 5.15 2.207c.46-.163 1.26-.349 2.43-.403C8.845 1.746 9.225 1.734 12 1.734L12 2.163zM12 0C8.741 0 8.333.014 7.053.072 5.775.131 4.903.333 4.14.63a5.876 5.876 0 0 0-2.126 1.384A5.876 5.876 0 0 0 .63 4.14C.333 4.903.131 5.775.072 7.053.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.059 1.278.261 2.15.558 2.913a5.876 5.876 0 0 0 1.384 2.126A5.876 5.876 0 0 0 4.14 23.37c.763.297 1.635.499 2.913.558C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.278-.059 2.15-.261 2.913-.558a5.876 5.876 0 0 0 2.126-1.384 5.876 5.876 0 0 0 1.384-2.126c.297-.763.499-1.635.558-2.913.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.059-1.278-.261-2.15-.558-2.913a5.876 5.876 0 0 0-1.384-2.126A5.876 5.876 0 0 0 19.86.63c-.763-.297-1.635-.499-2.913-.558C15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </a>
+          <a href="https://linkedin.com/company/360vision-bike" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-link">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM6.921 20.452H3.752V9h3.169v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.205 24 24 23.227 24 22.271V1.729C24 .774 23.205 0 22.225 0z"/></svg>
+          </a>
+          <a href="https://x.com/360vision_bike" target="_blank" rel="noopener" aria-label="X" class="social-link">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+        <a class="footer-link" href="./polityka-prywatnosci.html" data-i18n="footer.privacy">Polityka prywatności</a>
       </div>
     </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookieBanner" class="cookie-banner" style="display:none">
+      <p data-i18n="cookies.text">Ta strona używa plików cookies do celów analitycznych. Możesz zaakceptować wszystkie lub tylko niezbędne.</p>
+      <div class="cookie-actions">
+        <button id="cookieAccept" class="btn btn-default btn-sm" data-i18n="cookies.accept">Akceptuję</button>
+        <button id="cookieReject" class="btn btn-sm cookie-reject-btn" data-i18n="cookies.reject">Tylko niezbędne</button>
+      </div>
+    </div>
+
+    <!-- Chat Widget -->
+    <div id="chatWidget" class="chat-widget">
+      <button id="chatToggle" class="chat-toggle" aria-label="Chat">
+        <svg class="chat-icon-open" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        <svg class="chat-icon-close" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <div id="chatPanel" class="chat-panel">
+        <div class="chat-header">
+          <span class="chat-header-title">360 VISION AI</span>
+          <button id="chatClose" class="chat-close" aria-label="Close">&times;</button>
+        </div>
+        <div id="chatMessages" class="chat-messages">
+          <div class="chat-msg ai-msg">
+            <span data-i18n="chat.welcome">Cześć! Jestem asystentem 360 VISION. Zapytaj mnie o produkt, przedsprzedaż, beta testy lub współpracę.</span>
+          </div>
+        </div>
+        <form id="chatForm" class="chat-input-area">
+          <input id="chatInput" type="text" data-i18n-placeholder="chat.placeholder" placeholder="Napisz wiadomość..." autocomplete="off" />
+          <button type="submit" class="chat-send" aria-label="Send" data-i18n="chat.send">Wyślij</button>
+        </form>
+      </div>
+    </div>
 
     <script type="module" src="./script.js"></script>
   </body>
